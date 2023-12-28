@@ -8,7 +8,7 @@ from streamlit_option_menu import option_menu
 
 def main():
 
-    st.title("Personal Diary")
+    st.title("Personal Diary :notebook:")
 
     # change view based on what menu button user clicks
     today_date = datetime.now().strftime("%m/%d/%Y")
