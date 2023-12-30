@@ -9,7 +9,7 @@ from streamlit_option_menu import option_menu
 from localStoragePy import localStoragePy
 from pathlib import Path
 
-pipe_lr = joblib.load(open("model/text_emotion.pkl", "rb"))
+pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
 
 def predict_emotions(docx):
     results = pipe_lr.predict([docx])
