@@ -20,19 +20,19 @@ def get_prediction_proba(docx):
     return results
 
 def save_data(key, data):
-    with open(f"data/{key}.txt", "w") as file:
+    with open(f"code/data/{key}.txt", "w") as file:
         file.write(data)
 
 def load_data(key):
     try:
-        with open(f"data/{key}.txt", "r") as file:
+        with open(f"code/data/{key}.txt", "r") as file:
             return file.read()
     except FileNotFoundError:
         return ""
     
 def close_data(key):
     try:
-        with open(f"data/{key}.txt", "r") as file:
+        with open(f"code/data/{key}.txt", "r") as file:
             return file.close
     except FileNotFoundError:
         return ""
