@@ -48,9 +48,11 @@ def main():
             # CHANGE NAME OF BUTTON TO BE DATES WHEN AN ENTRY IS CREATED.
             #test = localStoragePy.getItem(localStorage, "folder_of_diary_entries")
             #st.markdown(test)
-            for item in localStorage.getItem("folder_of_diary_entries").length:
-                if st.button(date):
-                    st.markdown("hello")
+            counter = 0
+            for item in localStorage.getItem(today_date_folder_accessible):
+                if st.button(today_date):
+                    st.markdown(today_date+counter)
+                    counter+=1
         with col2:
             st.caption(":gray[mood:]")
             st.markdown(current_mood)
