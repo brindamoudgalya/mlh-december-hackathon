@@ -4,10 +4,10 @@ streamlit
 pandas
 datetime
 localStoragePy
-cv2
+opencv-python
 tensorflow
-keras.models
-keras.preprocessing.image
+keras-models
+Keras-Preprocessing
 streamlit_webrtc
 pandas
 altair
