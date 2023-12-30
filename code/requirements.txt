@@ -2,8 +2,6 @@ joblib
 numpy
 streamlit
 pandas
-time
-os
 datetime
 localStoragePy
 cv2
