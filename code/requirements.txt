@@ -13,4 +13,4 @@ pandas
 altair
 pathlib
 streamlit_option_menu
-sklearn
+scikit-learn
