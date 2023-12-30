@@ -2,10 +2,29 @@ import streamlit as st
 import redis
 import pandas as pd
 import time
+import os
 from datetime import datetime
 from streamlit_option_menu import option_menu
 from localStoragePy import localStoragePy
 from pathlib import Path
+
+def save_data(key, data):
+    with open(f"data/{key}.txt", "w") as file:
+        file.write(data)
+
+def load_data(key):
+    try:
+        with open(f"data/{key}.txt", "r") as file:
+            return file.read()
+    except FileNotFoundError:
+        return ""
+    
+def get_saved_dates():
+    try:
+        files = [f.split(".txt")[0] for f in os.listdir("data") if f.endswith(".txt")]
+        return sorted(files)
+    except FileNotFoundError:
+        return []
 
 
 def main(): 
@@ -28,34 +47,29 @@ def main():
 
 
     if selected=="Today":
-        current_diary_entry = st.text_area("Today's Entry (" + today_date + "):", value=localStorage.getItem(today_date_folder_accessible))
+        current_diary_entry = st.text_area("Today's Entry (" + today_date + "):", value=load_data(today_date_folder_accessible))
         st.markdown = localStorage.getItem(today_date_folder_accessible)
         if st.button("Save"):
             # generate success message:
             success_message = st.success("Saved.")
-            time.sleep(2) # wait 2 seconds
+            time.sleep(1.5) # wait 2 seconds
 
             # THIS IS NEW : SETTING IN LOCAL STORAGE
-            localStorage.setItem(today_date_folder_accessible, current_diary_entry)
+            save_data(today_date_folder_accessible, current_diary_entry)
             success_message.empty()
 
     elif selected=="Browse Old Entries":
         col1, col2 = st.columns(2)
-        current_mood="test"
         # setting what is in each column on page:  
         with col1:
             st.caption(":gray[date:]")
-            # CHANGE NAME OF BUTTON TO BE DATES WHEN AN ENTRY IS CREATED.
-            #test = localStoragePy.getItem(localStorage, "folder_of_diary_entries")
-            #st.markdown(test)
-            counter = 0
-            for item in localStorage.getItem(today_date_folder_accessible):
-                if st.button(today_date):
-                    st.markdown(today_date+counter)
-                    counter+=1
+            keys = get_saved_dates()
+            for key in keys:
+                if st.button(f"Display entry for {key}"):
+                    st.write(load_data(key))
         with col2:
             st.caption(":gray[mood:]")
-            st.markdown(current_mood)
+            
 
 
 
