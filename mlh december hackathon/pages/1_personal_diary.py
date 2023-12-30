@@ -1,7 +1,6 @@
 import joblib
 import numpy as np
 import streamlit as st
-import redis
 import pandas as pd
 import time
 import os
@@ -60,12 +59,14 @@ def main():
     # change view based on what menu button user clicks
     selected = option_menu(
             menu_title=None,
-            options=["Today", "Browse Old Entries"],
-            orientation='horizontal'
+            options=["today", "browse old entries"],
+            orientation='horizontal',
+            menu_icon='cast',
+            icons=['','']
     )
 
 
-    if selected=="Today":
+    if selected=="today":
         current_diary_entry = st.text_area("Today's Entry (" + today_date + "):", value=load_data(today_date_folder_accessible))
         st.markdown = localStorage.getItem(today_date_folder_accessible)
         if st.button("Save"):
@@ -77,7 +78,7 @@ def main():
             save_data(today_date_folder_accessible, current_diary_entry)
             success_message.empty()
 
-    elif selected=="Browse Old Entries":
+    elif selected=="browse old entries":
         keys = get_saved_dates()
         for key in keys:
             if st.button(f"Display entry for {key}"):
