@@ -1,3 +1,5 @@
+import joblib
+import numpy as np
 import streamlit as st
 import redis
 import pandas as pd
@@ -8,6 +10,16 @@ from streamlit_option_menu import option_menu
 from localStoragePy import localStoragePy
 from pathlib import Path
 
+pipe_lr = joblib.load(open("model/text_emotion.pkl", "rb"))
+
+def predict_emotions(docx):
+    results = pipe_lr.predict([docx])
+    return results[0]
+
+def get_prediction_proba(docx):
+    results = pipe_lr.predict_proba([docx])
+    return results
+
 def save_data(key, data):
     with open(f"data/{key}.txt", "w") as file:
         file.write(data)
@@ -16,6 +28,13 @@ def load_data(key):
     try:
         with open(f"data/{key}.txt", "r") as file:
             return file.read()
+    except FileNotFoundError:
+        return ""
+    
+def close_data(key):
+    try:
+        with open(f"data/{key}.txt", "r") as file:
+            return file.close
     except FileNotFoundError:
         return ""
     
@@ -59,19 +78,22 @@ def main():
             success_message.empty()
 
     elif selected=="Browse Old Entries":
-        col1, col2 = st.columns(2)
-        # setting what is in each column on page:  
-        with col1:
-            st.caption(":gray[date:]")
-            keys = get_saved_dates()
-            for key in keys:
-                if st.button(f"Display entry for {key}"):
+        keys = get_saved_dates()
+        for key in keys:
+            if st.button(f"Display entry for {key}"):
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.caption(key)
                     st.write(load_data(key))
-        with col2:
-            st.caption(":gray[mood:]")
-            
+                with col2:
+                    st.caption("mood")
+                    prediction = predict_emotions(load_data(key))
+                    probability = get_prediction_proba(load_data(key))
+                    st.write("{}".format(prediction))
+                    st.write("confidence: {}".format(np.max(probability)))
 
-
+                if st.button("close"):
+                    close_data(key)
 
 if __name__ == '__main__':
     main()

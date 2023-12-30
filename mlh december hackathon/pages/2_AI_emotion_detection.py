@@ -78,14 +78,14 @@ def main():
                 return img
 
         if __name__ == "__main__":
-            st.write("Click start and accept camera permissions to detect your emotions!")
+            st.write("click start and accept camera permissions to detect your emotions!")
             webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
     if selected == 'text emotion detection':
-        st.write("Write about how you feel and we’ll analyze your emotions through the words you write.")
+        st.write("write about how you feel and we’ll analyze your emotions through the words you write.")
 
         with st.form(key='my_form'):
-            raw_text = st.text_area("Type Here")
-            submit_text = st.form_submit_button(label='Submit')
+            raw_text = st.text_area("type here")
+            submit_text = st.form_submit_button(label='submit')
 
         if submit_text:
             col1, col2 = st.columns(2)
@@ -94,16 +94,16 @@ def main():
             probability = get_prediction_proba(raw_text)
 
             with col1:
-                st.success("Original Text")
+                st.success("original text")
                 st.write(raw_text)
 
-                st.success("Prediction")
+                st.success("prediction")
                 emoji_icon = emotions_emoji_dict[prediction]
-                st.write("{}:{}".format(prediction, emoji_icon))
-                st.write("Confidence:{}".format(np.max(probability)))
+                st.write("{}".format(prediction))
+                st.write("confidence: {}".format(np.max(probability)))
 
             with col2:
-                st.success("Prediction Probability")
+                st.success("prediction probability")
                 proba_df = pd.DataFrame(probability, columns=pipe_lr.classes_)
                 proba_df_clean = proba_df.T.reset_index()
                 proba_df_clean.columns = ["emotions", "probability"]
