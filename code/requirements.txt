@@ -12,3 +12,4 @@ streamlit_webrtc
 pandas
 altair
 pathlib
+streamlit_option_menu
