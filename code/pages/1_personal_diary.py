@@ -23,6 +23,7 @@ def save_data(key, data):
 
 def load_data(key):
     st.write(key)
+    st.write(f"code/data/{key}.txt")
     try:
         with open(f"code/data/{key}.txt", "r") as file:
             st.write(f"code/data/{key}.txt")
