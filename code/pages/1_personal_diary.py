@@ -1,13 +1,11 @@
 import joblib
 import numpy as np
 import streamlit as st
-import pandas as pd
 import time
 import os
 from datetime import datetime
 from streamlit_option_menu import option_menu
 from localStoragePy import localStoragePy
-from pathlib import Path
 
 pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
 
