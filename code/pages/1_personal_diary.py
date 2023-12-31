@@ -8,7 +8,7 @@ from datetime import datetime
 from streamlit_option_menu import option_menu
 from localStoragePy import localStoragePy
 
-pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
+pipe_lr = joblib.load(open("model/text_emotion.pkl", "rb"))
 
 #def predict_emotions(docx):
 #    results = pipe_lr.predict([docx])
@@ -19,14 +19,14 @@ pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
 #    return results
 
 #def save_data(key, data):
-#    with open(f"code/data/{key}.txt", "w") as file:
+#    with open(f"data/{key}.txt", "w") as file:
 #        file.write(data)
 
 #def load_data(key):
 #    st.write(key)
-#    st.write(f"code/data/{key}.txt")
+#    st.write(f"data/{key}.txt")
 #    try:
-#        with open(f"code/data/{str(key)}.txt", "r") as file:
+#        with open(f"data/{str(key)}.txt", "r") as file:
 #            return file.read
 #    except FileNotFoundError:
 #        return "file not found"
@@ -34,14 +34,14 @@ pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
     
 #def close_data(key):
 #    try:
-#        with open(f"code/data/{key}.txt", "r") as file:
+#        with open(f"data/{key}.txt", "r") as file:
 #            return file.close
 #    except FileNotFoundError:
 #        return "file not found"
     
 #def get_saved_dates():
 #    try:
-#        files = [f.split(".txt")[0] for f in os.listdir("code/data") if f.endswith(".txt")]
+#        files = [f.split(".txt")[0] for f in os.listdir("data") if f.endswith(".txt")]
 #        return sorted(files)
 #    except FileNotFoundError:
 #        return st.write("file not found")

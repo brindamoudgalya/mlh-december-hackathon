@@ -1,32 +1,55 @@
 import streamlit as st
+import streamlit_authenticator as stauth
+from deps import sign_up, fetch_users
 
-# header
-st.title("Home:sun_with_face:")
-st.write("""Hello there! This is an application that can help people identify and describe emotions.
-            This kind of emotion recognition doesn't come as easily to some people as it does to others
-            , and that's perfectly okay!"""
-            )
-st.write(
-    "People with alexithymia have trouble recognizing the emotions of others, as well as their own emotions. " +
-    "Many people with autism tend to have alexithymia, but it occurs in many others as well. Often, they are " +
-    "unable to verbalize their own emotions, due to either an unawareness of, or a confusion of, emotional and bodily feelings. " +
-    "Some main characteristics of alexithymia include *difficulty identifying feelings and distinguishing* " +
-    "*between bodily and emotional sensations, difficulty describing feelings to others, and reduced capicity to imagine.* " + 
-    "Lack of awareness of the emotions of themselves and other people around them can lead to social issues."
-)
-st.write(
-    "This website is mainly geared towards helping people with alexithymia identify and describe their emotions. " +
-    "Feel free to explore this website, which includes the following: "
-)
-st.write(
-    ":notebook: a :orange[diary] to log the events that happen in your life, and to explore the way you may be feeling about them."
-)
-st.write(
-    ":camera: a :green[camera] to detect the emotions of others around you, and perhaps also yourself! Test it out!"
-)
-st.write(
-    ":pencil: a :blue[text box] to paste text into. Our app can provide insight into what emotions the text may be carrying."
-)
-st.write(
-    ":question: an :violet[additional help] page to explore more resources for alexithymia!"
-)
+import main as main
+
+def fun():
+
+    users = fetch_users()
+    emails = []
+    usernames = []
+    passwords = []
+
+    for user in users:
+        emails.append(user['key'])
+        usernames.append(user['username'])
+        passwords.append(user['password'])
+
+    credentials = {'usernames': {}}
+    for index in range(len(emails)):
+        credentials['usernames'][usernames[index]] = {'name': emails[index], 'password': passwords[index]}
+
+    Authenticator = stauth.Authenticate(credentials, cookie_name='Streamlit', key='abcdef', cookie_expiry_days=4)
+
+    email, authentication_status, username = Authenticator.login(':green[Login]', 'main')
+
+    info, info1 = st.columns(2)
+
+    if not authentication_status:
+        st.write("or")
+        sign_up()
+
+    if username:
+        if username in usernames:
+            if authentication_status:
+                # let User see app
+                st.sidebar.subheader(f'Welcome {username}')
+                Authenticator.logout('Log Out', 'sidebar')
+                main.fun()
+
+            elif not authentication_status:
+                with info:
+                    st.error('Incorrect Password or username')
+            else:
+                with info:
+                    st.warning('Please feed in your credentials')
+        else:
+            with info:
+                st.warning('Username does not exist, Please Sign up')
+
+    
+
+
+if __name__ == '__main__':
+    fun()
