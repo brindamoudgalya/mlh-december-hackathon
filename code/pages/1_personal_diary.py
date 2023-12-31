@@ -25,6 +25,7 @@ def load_data(key):
     st.write(key)
     try:
         with open(f"code/data/{key}.txt", "r") as file:
+            st.write(f"code/data/{key}.txt")
             return file.read
     except FileNotFoundError:
         return "file not found"
