@@ -96,5 +96,7 @@ def main():
                 if st.button("close"):
                     close_data(key)
 
+        st.write("in old entries 2")
+
 if __name__ == '__main__':
     main()
