@@ -70,7 +70,7 @@ def main():
         if st.button("Save"):
             # generate success message:
             success_message = st.success("Saved.")
-            st.markdown("I executed")
+            st.write("I executed")
             time.sleep(1.5) # wait 2 seconds
 
             # THIS IS NEW : SETTING IN LOCAL STORAGE
