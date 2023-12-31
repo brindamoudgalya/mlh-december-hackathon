@@ -21,6 +21,7 @@ def save_data(key, data):
     with open(f"code/data/{key}.txt", "w") as file:
         file.write(data)
         st.write("data saved in ", key)
+        st.write(data)
 
 def load_data(key):
     try:
