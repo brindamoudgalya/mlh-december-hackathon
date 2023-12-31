@@ -89,7 +89,7 @@ def main():
             with col1:
                 st.caption("date")
                 #st.write(load_data(key))
-                for files in os.listdir("C:/Users/brind/.config/localStoragePy/folder_of_diary_entries"):
+                for files in os.listdir(".config/localStoragePy/folder_of_diary_entries"):
                      st.write(files)
             with col2:
                 st.caption("mood")
