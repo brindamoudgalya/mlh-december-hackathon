@@ -20,12 +20,10 @@ def get_prediction_proba(docx):
 def save_data(key, data):
     with open(f"code/data/{key}.txt", "w") as file:
         file.write(data)
-        st.write("data saved in ", key)
 
 def load_data(key):
     try:
         with open(f"code/data/{key}.txt", "r") as file:
-            st.write("loaded data")
             return file.read
     except FileNotFoundError:
         return "file not found"
@@ -35,13 +33,11 @@ def close_data(key):
         with open(f"code/data/{key}.txt", "r") as file:
             return file.close
     except FileNotFoundError:
-        return ""
+        return "file not found"
     
 def get_saved_dates():
-    st.write("getting saved dates...")
     try:
         files = [f.split(".txt")[0] for f in os.listdir("code/data") if f.endswith(".txt")]
-        st.write("got saved dates")
         return sorted(files)
     except FileNotFoundError:
         return st.write("file not found")
@@ -74,7 +70,6 @@ def main():
         if st.button("Save"):
             # generate success message:
             success_message = st.success("Saved.")
-            st.write("I executed")
             time.sleep(1.5) # wait 2 seconds
 
             # THIS IS NEW : SETTING IN LOCAL STORAGE
