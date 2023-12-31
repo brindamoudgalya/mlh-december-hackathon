@@ -38,12 +38,13 @@ def close_data(key):
         return ""
     
 def get_saved_dates():
+    st.write("getting saved dates...")
     try:
         files = [f.split(".txt")[0] for f in os.listdir("code/data") if f.endswith(".txt")]
-        st.write("get_saved_dates")
+        st.write("got saved dates")
         return sorted(files)
     except FileNotFoundError:
-        return []
+        return st.write("file not found")
 
 
 def main(): 
