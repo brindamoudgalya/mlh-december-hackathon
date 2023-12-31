@@ -25,8 +25,7 @@ def load_data(key):
     st.write(key)
     st.write(f"code/data/{key}.txt")
     try:
-        with open(f"code/data/{key}.txt", "r") as file:
-            st.write(f"code/data/{key}.txt")
+        with open(f"code/data/{str(key)}.txt", "r") as file:
             return file.read
     except FileNotFoundError:
         return "file not found"
@@ -55,7 +54,7 @@ def main():
     today_date = datetime.now().strftime("%m/%d/%Y")
     today_date_folder_accessible = datetime.now().strftime("%m.%d.%Y")
 
-    # setting up local storage: THIS IS NEW ASL;DKFJA;LSDKJFA;SLJFD
+    # setting up local storage
     localStorage = localStoragePy("folder_of_diary_entries", 'text')
 
     # change view based on what menu button user clicks
@@ -69,7 +68,7 @@ def main():
 
 
     if selected=="today":
-        current_diary_entry = st.text_area("Today's Entry (" + today_date + "):", value=load_data(today_date_folder_accessible))
+        current_diary_entry = st.text_area("Today's Entry (" + today_date + "):", value=localStorage.getItem(today_date_folder_accessible))
         st.markdown = localStorage.getItem(today_date_folder_accessible)
         if st.button("Save"):
             # generate success message:
@@ -77,27 +76,29 @@ def main():
             time.sleep(1.5) # wait 2 seconds
 
             # THIS IS NEW : SETTING IN LOCAL STORAGE
-            save_data(today_date_folder_accessible, current_diary_entry)
+            localStorage.setItem(today_date_folder_accessible, current_diary_entry)
             success_message.empty()
 
     elif selected=="browse old entries":
-        keys = get_saved_dates()
-        st.write(keys)
-        for key in keys:
-            if st.button(f"Display entry for {key}"):
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.caption(key)
-                    st.write(load_data(key))
-                with col2:
-                    st.caption("mood")
-                    prediction = predict_emotions(load_data(key))
-                    probability = get_prediction_proba(load_data(key))
-                    st.write("{}".format(prediction))
-                    st.write("confidence: {}".format(np.max(probability)))
+        #keys = get_saved_dates()
+        #st.write(keys)
+        #for key in keys:
+        #if st.button(f"Display entry for {key}"):
+            col1, col2 = st.columns(2)
+            with col1:
+                #st.caption(key)
+                #st.write(load_data(key))
+                st.write("placeholder text so no errors without old code.")
+            with col2:
+                st.caption("mood")
+                #prediction = predict_emotions(load_data(key))
+                #probability = get_prediction_proba(load_data(key))
+                #st.write("{}".format(prediction))
+                #st.write("confidence: {}".format(np.max(probability)))
 
-                if st.button("close"):
-                    close_data(key)
+            if st.button("close"):
+                st.write("placeholder text so no errors without the close_data method call.")
+                #close_data(key)
 
 if __name__ == '__main__':
     main()
