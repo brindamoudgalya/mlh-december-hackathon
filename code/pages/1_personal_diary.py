@@ -21,7 +21,6 @@ def save_data(key, data):
     with open(f"code/data/{key}.txt", "w") as file:
         file.write(data)
         st.write("data saved in ", key)
-        st.write(data)
 
 def load_data(key):
     try:
@@ -84,6 +83,7 @@ def main():
     elif selected=="browse old entries":
         st.write("in old entries")
         keys = get_saved_dates()
+        st.write(keys)
         for key in keys:
             if st.button(f"Display entry for {key}"):
                 col1, col2 = st.columns(2)
