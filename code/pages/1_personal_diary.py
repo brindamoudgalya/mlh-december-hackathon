@@ -9,44 +9,44 @@ from localStoragePy import localStoragePy
 
 pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
 
-def predict_emotions(docx):
-    results = pipe_lr.predict([docx])
-    return results[0]
+#def predict_emotions(docx):
+#    results = pipe_lr.predict([docx])
+#    return results[0]
 
-def get_prediction_proba(docx):
-    results = pipe_lr.predict_proba([docx])
-    return results
+#def get_prediction_proba(docx):
+#    results = pipe_lr.predict_proba([docx])
+#    return results
 
-def save_data(key, data):
-    with open(f"code/data/{key}.txt", "w") as file:
-        file.write(data)
+#def save_data(key, data):
+#    with open(f"code/data/{key}.txt", "w") as file:
+#        file.write(data)
 
-def load_data(key):
-    st.write(key)
-    st.write(f"code/data/{key}.txt")
-    try:
-        with open(f"code/data/{str(key)}.txt", "r") as file:
-            return file.read
-    except FileNotFoundError:
-        return "file not found"
+#def load_data(key):
+#    st.write(key)
+#    st.write(f"code/data/{key}.txt")
+#    try:
+#        with open(f"code/data/{str(key)}.txt", "r") as file:
+#            return file.read
+#    except FileNotFoundError:
+#        return "file not found"
 
     
-def close_data(key):
-    try:
-        with open(f"code/data/{key}.txt", "r") as file:
-            return file.close
-    except FileNotFoundError:
-        return "file not found"
+#def close_data(key):
+#    try:
+#        with open(f"code/data/{key}.txt", "r") as file:
+#            return file.close
+#    except FileNotFoundError:
+#        return "file not found"
     
-def get_saved_dates():
-    try:
-        files = [f.split(".txt")[0] for f in os.listdir("code/data") if f.endswith(".txt")]
-        return sorted(files)
-    except FileNotFoundError:
-        return st.write("file not found")
+#def get_saved_dates():
+#    try:
+#        files = [f.split(".txt")[0] for f in os.listdir("code/data") if f.endswith(".txt")]
+#        return sorted(files)
+#    except FileNotFoundError:
+#        return st.write("file not found")
 
 
-def main(): 
+def main():
 
     st.title("Personal Diary :notebook:")
 
