@@ -22,11 +22,13 @@ def save_data(key, data):
         file.write(data)
 
 def load_data(key):
+    st.write(key)
     try:
         with open(f"code/data/{key}.txt", "r") as file:
             return file.read
     except FileNotFoundError:
         return "file not found"
+
     
 def close_data(key):
     try:
