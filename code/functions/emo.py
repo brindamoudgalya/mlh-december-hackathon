@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-def main():
+def emo():
     selected = option_menu(
         menu_title=None,
         options=['joy', 'anger','sadness','surprise','fear','shame','disgust'],
@@ -193,7 +193,3 @@ The aftermath of disgust varies, leaving imprints that range from momentary disc
 Literary and artistic expressions often leverage the emotional power of disgust to evoke visceral reactions from audiences. Horror literature and films, for example, utilize elements of disgust to elicit fear and repulsion, playing on the primal aspects of human psychology. Visual artists, too, explore the boundaries of disgust as a theme, challenging societal norms and prompting viewers to confront their own visceral reactions.
 
 In conclusion, disgust is a multifaceted and adaptive emotion that traverses the realms of physical health, social dynamics, and moral judgment. Its evolutionary roots as a protective mechanism underscore its role in safeguarding individual well-being. Yet, the social and cultural dimensions of disgust highlight its malleability and the influence of societal norms in shaping emotional responses. Navigating disgust involves a delicate dance between individual sensitivities, cultural influences, and the transformative potential that arises from understanding and recalibrating this intricate emotion. Embracing the nuances of disgust allows individuals to engage with the world with a heightened awareness of their emotional responses and the complexities that shape their perceptions of acceptability and repulsion.""")
-
-
-if __name__ == '__main__':
-    main()

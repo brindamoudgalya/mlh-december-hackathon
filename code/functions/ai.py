@@ -11,7 +11,7 @@ import pandas as pd
 import altair as alt
 import joblib
 
-pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
+pipe_lr = joblib.load(open("model/text_emotion.pkl", "rb"))
 
 emotions_emoji_dict = {"anger": "😠", "disgust": "🤮", "fear": "😨😱", "happy": "🤗", "joy": "😂", "neutral": "😐", "sad": "😔",
                        "sadness": "😔", "shame": "😳", "surprise": "😮"}
@@ -24,7 +24,7 @@ def get_prediction_proba(docx):
     results = pipe_lr.predict_proba([docx])
     return results
 
-def main():
+def ai():
     selected = option_menu(
         menu_title=None,
         options=['facial emotion detection', 'text emotion detection'],
@@ -37,13 +37,13 @@ def main():
         # load model
         emotion_dict = {0:'angry', 1 :'happy', 2: 'neutral', 3:'sad', 4: 'surprise'}
         # load json and create model
-        json_file = open('code/model/emotion_model1.json', 'r')
+        json_file = open('model/emotion_model1.json', 'r')
         loaded_model_json = json_file.read()
         json_file.close()
         classifier = model_from_json(loaded_model_json)
 
         # load weights into new model
-        classifier.load_weights("code/model/emotion_model1.h5")
+        classifier.load_weights("model/emotion_model1.h5")
 
         #load face
         try:
@@ -77,9 +77,8 @@ def main():
 
                 return img
 
-        if __name__ == "__main__":
-            st.write("click start and accept camera permissions to detect your emotions!")
-            webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
+        st.write("click start and accept camera permissions to detect your emotions!")
+        webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
     if selected == 'text emotion detection':
         st.write("write about how you feel and we’ll analyze your emotions through the words you write.")
 
@@ -110,7 +109,3 @@ def main():
 
                 fig = alt.Chart(proba_df_clean).mark_bar().encode(x='emotions', y='probability', color='emotions')
                 st.altair_chart(fig, use_container_width=True)
-
-
-if __name__ == '__main__':
-    main()
