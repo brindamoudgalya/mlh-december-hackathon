@@ -1,6 +1,7 @@
 import joblib
 import numpy as np
 import streamlit as st
+import pandas as pd
 import time
 import os
 from datetime import datetime
@@ -86,18 +87,23 @@ def main():
         #if st.button(f"Display entry for {key}"):
             col1, col2 = st.columns(2)
             with col1:
-                #st.caption(key)
+                st.caption("date")
                 #st.write(load_data(key))
-                st.write("placeholder text so no errors without old code.")
+                for files in os.listdir("C:/Users/brind/.config/localStoragePy/folder_of_diary_entries"):
+                     st.write(files)
             with col2:
                 st.caption("mood")
+                os.chdir("C:/Users/brind/.config/localStoragePy/folder_of_diary_entries")
+                for files in os.listdir("C:/Users/brind/.config/localStoragePy/folder_of_diary_entries"):
+                     file = pd.read_csv(files, header=None)
+                     st.write(file)
                 #prediction = predict_emotions(load_data(key))
                 #probability = get_prediction_proba(load_data(key))
                 #st.write("{}".format(prediction))
                 #st.write("confidence: {}".format(np.max(probability)))
 
             if st.button("close"):
-                st.write("placeholder text so no errors without the close_data method call.")
+                st.write("placeholder text")
                 #close_data(key)
 
 if __name__ == '__main__':
