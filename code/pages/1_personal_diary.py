@@ -20,11 +20,13 @@ def get_prediction_proba(docx):
 def save_data(key, data):
     with open(f"code/data/{key}.txt", "w") as file:
         file.write(data)
-
+        st.write("data saved")
+        
 def load_data(key):
     try:
         with open(f"code/data/{key}.txt", "r") as file:
-            return file.read()
+            st.write("loaded data")
+            return file.read()   
     except FileNotFoundError:
         return ""
     
@@ -38,6 +40,7 @@ def close_data(key):
 def get_saved_dates():
     try:
         files = [f.split(".txt")[0] for f in os.listdir("data") if f.endswith(".txt")]
+        st.write("get_saved_dates")
         return sorted(files)
     except FileNotFoundError:
         return []
