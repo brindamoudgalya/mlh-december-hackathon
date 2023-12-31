@@ -93,8 +93,8 @@ def main():
                      st.write(files)
             with col2:
                 st.caption("mood")
-                os.chdir("C:/Users/brind/.config/localStoragePy/folder_of_diary_entries")
-                for files in os.listdir("C:/Users/brind/.config/localStoragePy/folder_of_diary_entries"):
+                os.chdir(".config/localStoragePy/folder_of_diary_entries")
+                for files in os.listdir(".config/localStoragePy/folder_of_diary_entries"):
                      file = pd.read_csv(files, header=None)
                      st.write(file)
                 #prediction = predict_emotions(load_data(key))
