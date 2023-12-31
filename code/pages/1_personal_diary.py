@@ -78,6 +78,7 @@ def main():
             success_message.empty()
 
     elif selected=="browse old entries":
+        st.write("in old entries")
         keys = get_saved_dates()
         for key in keys:
             if st.button(f"Display entry for {key}"):

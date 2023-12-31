@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.title("Additional Help :tulip:")
-st.markdown("""Alexithymia is a psychological condition characterized by difficulties in recognizing and expressing emotions. People with alexithymia may struggle with identifying and describing their own emotions, as well as understanding the emotions of others. Here are some suggestions that may provide additional support for individuals with alexithymia:
+st.write("""Alexithymia is a psychological condition characterized by difficulties in recognizing and expressing emotions. People with alexithymia may struggle with identifying and describing their own emotions, as well as understanding the emotions of others. Here are some suggestions that may provide additional support for individuals with alexithymia:
 
 **Visual Aids:**  
 Use visual aids such as emotion charts, diagrams, or images to help individuals identify and express their emotions. These visual cues can serve as a reference point and make the process more tangible.
