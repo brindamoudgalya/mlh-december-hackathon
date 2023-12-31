@@ -9,7 +9,7 @@ from streamlit_option_menu import option_menu
 from localStoragePy import localStoragePy
 from pathlib import Path
 
-pipe_lr = joblib.load(open("model/text_emotion.pkl", "rb"))
+pipe_lr = joblib.load(open("code/model/text_emotion.pkl", "rb"))
 
 def predict_emotions(docx):
     results = pipe_lr.predict([docx])
@@ -20,19 +20,19 @@ def get_prediction_proba(docx):
     return results
 
 def save_data(key, data):
-    with open(f"data/{key}.txt", "w") as file:
+    with open(f"code/data/{key}.txt", "w") as file:
         file.write(data)
 
 def load_data(key):
     try:
-        with open(f"data/{key}.txt", "r") as file:
+        with open(f"code/data/{key}.txt", "r") as file:
             return file.read()
     except FileNotFoundError:
         return ""
     
 def close_data(key):
     try:
-        with open(f"data/{key}.txt", "r") as file:
+        with open(f"code/data/{key}.txt", "r") as file:
             return file.close
     except FileNotFoundError:
         return ""
