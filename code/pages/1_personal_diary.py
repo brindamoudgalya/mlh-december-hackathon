@@ -26,9 +26,9 @@ def load_data(key):
     try:
         with open(f"code/data/{key}.txt", "r") as file:
             st.write("loaded data")
-            return file.read()   
+            return file.read().decode('ISO-8859-1')
     except FileNotFoundError:
-        return ""
+        return "file not found"
     
 def close_data(key):
     try:
