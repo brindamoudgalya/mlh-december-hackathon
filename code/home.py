@@ -2,9 +2,9 @@ import streamlit as st
 
 # header
 st.title("Home:sun_with_face:")
-st.markdown("Hello there! This is an application that can help people identify and describe emotions. " +
-            "This kind of emotion recognition doesn't come as easily to some people as it does to others" +
-            ", and that's perfectly okay!"
+st.markdown("""Hello there! This is an application that can help people identify and describe emotions.
+            This kind of emotion recognition doesn't come as easily to some people as it does to others
+            , and that's perfectly okay!"""
             )
 st.markdown(
     "People with alexithymia have trouble recognizing the emotions of others, as well as their own emotions. " +
