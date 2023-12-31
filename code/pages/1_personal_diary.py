@@ -39,7 +39,7 @@ def close_data(key):
     
 def get_saved_dates():
     try:
-        files = [f.split(".txt")[0] for f in os.listdir("data") if f.endswith(".txt")]
+        files = [f.split(".txt")[0] for f in os.listdir("code/data") if f.endswith(".txt")]
         st.write("get_saved_dates")
         return sorted(files)
     except FileNotFoundError:
