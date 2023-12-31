@@ -20,8 +20,8 @@ def get_prediction_proba(docx):
 def save_data(key, data):
     with open(f"code/data/{key}.txt", "w") as file:
         file.write(data)
-        st.write("data saved")
-        
+        st.write("data saved in ", key)
+
 def load_data(key):
     try:
         with open(f"code/data/{key}.txt", "r") as file:
