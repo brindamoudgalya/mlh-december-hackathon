@@ -77,7 +77,6 @@ def main():
             success_message.empty()
 
     elif selected=="browse old entries":
-        st.write("in old entries")
         keys = get_saved_dates()
         st.write(keys)
         for key in keys:
@@ -95,8 +94,6 @@ def main():
 
                 if st.button("close"):
                     close_data(key)
-
-        st.write("in old entries 2")
 
 if __name__ == '__main__':
     main()
